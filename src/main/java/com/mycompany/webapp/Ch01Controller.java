@@ -23,4 +23,4 @@ public class Ch01Controller {
 		// views 안에 ch01 폴더를 만들고 실행해보면 실행이 return "home";일때는 안된다.
 		// 이때 return "ch01/home"; 이라고 주면 된다.
 	}
-}
+} 
