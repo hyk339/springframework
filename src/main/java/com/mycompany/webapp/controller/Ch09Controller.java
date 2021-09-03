@@ -85,6 +85,7 @@ public class Ch09Controller {
 		return json;
 	}
 	
+	
 	//아래도 문제가 있는게 image 파일이라고 보장은 못한다.
 	//png,jpg등 다양하게 존재한다.
 	//그래서 produces가 고정이 되면 안된다.
@@ -96,20 +97,19 @@ public class Ch09Controller {
 	@ResponseBody
 	public byte[] filedownload(String savedname) throws Exception { //원래 매개값으로 int타입 filenum을 받아올것이다.
 		//우리가 db에서 filename을 읽어온다고 가정해보자
-		String originFilename = "photo5.jpg";
-		//String savedname = "1630651039932-bg1.jpg";
-		String contenttype = "image/jpeg";
-		
 		String filePath = "C:/hyundai_it&e/upload_files/"+savedname;
-		//여기 있는 파일 을 읽어서
+
+		//filePath에 있는 파일을 읽는다.
 		InputStream is = new FileInputStream(filePath);
-		//아래방법은 좋은 방법이 아니다.
-		//byte배열로 만든다음
-	
+
+		//byte배열로 만든다.
 		byte[] data = IOUtils.toByteArray(is);
+
+		//현재 이 방법은 좋은 방법이 아니다.
 		return data;
 	}
 	*/
+	
 	
 	@GetMapping(value="/filedownload")
 	public void filedownload(
