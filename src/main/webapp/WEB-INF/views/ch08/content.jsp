@@ -116,12 +116,24 @@
 						$.ajax({
 							url: "logoutAjax",
 						}).done((data)=>{
-							
+							//현재 페이지 전체를 다시 서버에서 받아오도록 함.
+							window.location.reload();
 						});
 					}
 				</script>
 			</div>
 		</div>
+		
+		<div class="card">
+			<div class="card-header">
+				@SessionAttributes를 이용한 다단계 입력처리
+			</div>
+			<div class="card-body">
+				<a href="inputStep1" class="btn btn-info btn-sm">1단계 입력</a>
+			</div>
+			
+		</div>
+		
 		
 		
 	</div>
