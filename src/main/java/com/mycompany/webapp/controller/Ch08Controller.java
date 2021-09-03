@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -52,6 +53,55 @@ public class Ch08Controller {
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("name", name);
 		String json = jsonObject.toString(); // {"name":"홍길동"}
+		return json;
+	}
+	
+	@GetMapping("/login")
+	public String loginForm() {
+		logger.info("실행");
+		return "ch08/loginForm";
+	}
+	
+	@PostMapping("/login")
+	public String login(String mid, String mpassword, HttpSession session) {
+		if(mid.equals("spring")&&mpassword.equals("12345")) {
+			session.setAttribute("sessionMid", mid);
+		}
+		return "redirect:/ch08/content";
+	}
+	
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		logger.info("실행");
+		
+		//방법1 . 직접 mid를 찾아서 지우기
+		session.removeAttribute("sessionMid");
+		
+		//방법2 . session 객체 지우기(session안에 모든 데이터가 날라간다.)
+		//session.invalidate();
+		
+		return "redirect:/ch08/content";
+	}
+	
+	
+	@PostMapping(value="/loginAjax", produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public String loginAjax(String mid, String mpassword, HttpSession session) {
+		logger.info("실행");
+		String result = "";
+		
+		if(!mid.equals("spring")) {
+			result = "wrongMid";
+		} else if(!mpassword.equals("12345")) {
+			result = "wrongMpassword";
+		} else {
+			result = "success";
+			session.setAttribute("sessionMid", mid);
+		}
+		
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("result", result);
+		String json = jsonObject.toString();
 		return json;
 	}
 }
