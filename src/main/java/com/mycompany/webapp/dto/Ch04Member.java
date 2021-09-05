@@ -30,6 +30,4 @@ public class Ch04Member {
 	public void setMtel(String mtel) {
 		this.mtel = mtel;
 	}
-	
-	
 }

@@ -203,23 +203,6 @@
 						};
 					}
 					
-					/*
-					const param2Error = $("#form1 .param2-error");
-					param1Error.innerHTML = "";
-					if(param2 === ""){
-						param2Error.innerHTML = "필수 입력 사항";
-						checkResult = false;
-					} else{
-						const pattern = /(19|20)(01|02|03|04|05|06|07|08|09|10|11|12)[]{5}-[1234][0-9]{6}/i;
-						const result = pattern.test(param1);
-						if(result === false){
-							param1Error.innerHTML = "잘못 입력하셨습니다.";
-							checkResult = false;
-						};
-					}
-					
-					*/
-					
 					if(checkData){					
 						$.ajax({
 							url:"method1",

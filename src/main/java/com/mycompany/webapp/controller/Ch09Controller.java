@@ -27,7 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/ch09")
 public class Ch09Controller {
 	
-	private static final Logger logger = LoggerFactory.getLogger(Ch08Controller.class);
+	private static final Logger logger = LoggerFactory.getLogger(Ch09Controller.class);
 	
 	@RequestMapping("/content")
 	public String content() {

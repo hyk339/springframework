@@ -131,7 +131,6 @@ public class Ch05Controller {
 
 		//String json = "{\"userid\":\"fall\", \"useremail\":\"fall@company.com\", \"username\":\"홍길동\"}";
 		
-		
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("userid", "fall");
 		jsonObject.put("useremail", "fall@company.com");

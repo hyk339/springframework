@@ -43,6 +43,4 @@ public class Ch03Dto {
 	public void setParam5(Date param5) {
 		this.param5 = param5;
 	}
-	
-	
 }
