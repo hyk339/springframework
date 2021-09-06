@@ -7,7 +7,7 @@
 		DTO 객체의 필드값을 양식의 드롭다운리스트(select 태그)로 세팅
 	</div>
 	<div class="card-body">
-		 	<%--
+		<%-- 
 		<form>
 		  <div class="form-group">
 		    <label for="mtype">Type</label>
@@ -19,19 +19,63 @@
 		      </c:forEach>
 		    </select>
 		  </div>
+		  
+		  <div class="form-group">
+		    <label for="mjob">Job</label>
+		    <select class="form-control" id="mjob" name="mjob">
+		      <option value="">---선택하세요---</option>
+		      <c:forEach var="job" items="${jobList}">
+		      	<option value="${job}"
+					<c:if test="${member.mjob == job}">selected</c:if>		      	
+		      	>${job}</option>
+		      </c:forEach>
+		    </select>
+		  </div>
+		  
+		   <div class="form-group">
+		    <label for="mcity">City</label>
+		    <select class="form-control" id="mcity" name="mcity">
+				<c:forEach var="city" items="${cityList}">
+					<option value="${city.code}"
+							<c:if test="${member.mcity == city.code}">selected</c:if>
+					>${city.label}</option>
+				</c:forEach>
+		    </select>
+		  </div>
+		  
 		  <button type="submit" class="btn btn-primary btn-sm">제출</button>
-		</form>
+		</form> 
 		--%>
 		
 		
 	 <%--자동으로 post방식으로 현재 요청한 주소의 post방식으로 넘어간다.--%>
+	 
+		
 		<form:form method="post" action="form2" modelAttribute="member">
 		  <div class="form-group">
 		    <label for="mtype">Type</label>
 			<form:select path="mtype" items="${typeList}" class="form-control"/>
 		  </div>
+		  
+		  <div class="form-group">
+		    <label for="mtype">Job</label>
+			<form:select path="mjob" class="form-control">
+		      <option value="">---선택하세요---</option>
+			  <form:options items="${jobList}"/>
+			</form:select>
+		  </div>
+		  
+		  <div class="form-group">
+		    <label for="mcity">City</label>
+			<form:select path="mcity" items="${cityList}" itemValue="code" itemLabel="label" class="form-control"/>
+		  </div>
+		  
 		  <button type="submit" class="btn btn-primary btn-sm">제출</button>
-		</form:form>
+		</form:form>  
+	
+		
+		
+		
 	</div>
 </div>
 

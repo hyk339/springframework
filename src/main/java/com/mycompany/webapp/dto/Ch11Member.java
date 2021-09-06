@@ -11,4 +11,6 @@ public class Ch11Member {
 	private String mpassword;
 	private String mnation;
 	private String mtype;
+	private String mjob;
+	private int mcity;
 }
