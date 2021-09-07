@@ -43,6 +43,15 @@
 			</div>
 		</div>
 		
+		<div class="card">
+			<div class="card-header">
+				국제화를 적용한 폼
+			</div>
+			<div class="card-body">
+				<a href="form5" class="btn btn-info btn-sm">form5</a>
+			</div>
+		</div>
+		
 	</div>
 </div>
 
