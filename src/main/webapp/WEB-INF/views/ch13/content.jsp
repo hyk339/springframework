@@ -23,7 +23,6 @@
 			</div>
 			<div class="card-body">
 				<a href="request3" class="btn btn-info btn-sm">request3</a>
-				<a href="request4" class="btn btn-info btn-sm">request4</a>
 			</div>
 		</div>
 		

@@ -23,11 +23,13 @@ public class Ch13Controller {
 	
 	private Ch13Service1 ch13Service1;
 	
+	//타입으로 객체를 찾아서 주입
 	//@Autowired
 	@Resource
 	private Ch13Service2 ch13Service2;
 	
-	@Resource
+	//이름으로 객체를 찾아서 주입
+	@Resource(name="ch13Service4")
 	private Ch13Service ch13Service3;
 	
 	
