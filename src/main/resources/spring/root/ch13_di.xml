@@ -2,9 +2,17 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-	
-	<bean id="ch13Service1" class="com.mycompany.webapp.service.Ch13Service1"></bean>
 
 	<bean id="ch13BoardDao1" class="com.mycompany.webapp.dao.Ch13BoardDao1"></bean>
+	
+	<!-- 생성자 주입 -->
+	<!-- <bean id="ch13Service1" class="com.mycompany.webapp.service.Ch13Service1" lazy-init="default">
+		<constructor-arg ref="ch13BoardDao1"/>
+	</bean> -->
+
+	<!-- Setter 주입 -->
+	<bean id="ch13Service1" class="com.mycompany.webapp.service.Ch13Service1">
+		<property name="ch13BoardDao1" ref="ch13BoardDao1"></property>
+	</bean>
 	
 </beans>
