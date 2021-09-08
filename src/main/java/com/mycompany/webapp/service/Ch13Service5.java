@@ -2,6 +2,7 @@ package com.mycompany.webapp.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 
 public class Ch13Service5 {
 	private static final Logger logger = LoggerFactory.getLogger(Ch13Service5.class);
@@ -9,6 +10,7 @@ public class Ch13Service5 {
 	private int prop1;
 	private double prop2;
 	private boolean prop3;
+	private String prop4;
 	
 	public Ch13Service5(int prop1, double prop2) {
 		logger.info("실행");
@@ -23,4 +25,5 @@ public class Ch13Service5 {
 		logger.info("prop3: "+ prop3);
 		this.prop3 = prop3;
 	}
+	
 }
