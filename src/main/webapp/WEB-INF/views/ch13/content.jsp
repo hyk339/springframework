@@ -7,8 +7,26 @@
 		DI(의존성 주입)
 	</div>
 	<div class="card-body">
-		<a href="request1" class="btn btn-info btn-sm">request1</a>
-		<a href="request2" class="btn btn-info btn-sm">request2</a>
+		<div class="card">
+			<div class="card-header">
+				XML 방식과 Annotation 방식으로 주입
+			</div>
+			<div class="card-body">
+				<a href="request1" class="btn btn-info btn-sm">request1</a>
+				<a href="request2" class="btn btn-info btn-sm">request2</a>
+			</div>
+		</div>
+		
+		<div class="card">
+			<div class="card-header">
+				타입에 의한 주입과 이름에 의한 주입
+			</div>
+			<div class="card-body">
+				<a href="request3" class="btn btn-info btn-sm">request3</a>
+				<a href="request4" class="btn btn-info btn-sm">request4</a>
+			</div>
+		</div>
+		
 	</div>
 </div>
 
