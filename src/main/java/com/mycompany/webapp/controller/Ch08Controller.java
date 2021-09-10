@@ -1,6 +1,9 @@
 package com.mycompany.webapp.controller;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
@@ -116,13 +119,37 @@ public class Ch08Controller {
 	public String logoutAjax(HttpSession session) {
 		logger.info("실행");
 
-		session.invalidate();
+		//session.invalidate();
+		session.removeAttribute("sessionMid");
 		
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("result", "success");
 		String json = jsonObject.toString();
 		return json;
 	}
+	
+	/*
+	@GetMapping("/logoutAjax")
+	public void logoutAjax(HttpSession session, HttpServletResponse response) throws Exception {
+		logger.info("실행");
+
+		session.invalidate();
+		//session.removeAttribute("sessionMid");
+
+		response.setContentType("application/json; charset=UTF-8");
+		PrintWriter pw = response.getWriter();
+		
+		
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("result", "success");
+		String json = jsonObject.toString();
+		pw.print(json);
+		//pw.flush();
+		//pw.close();
+		
+	}
+	*/
+	
 	
 	//모든 요청에 대해 아래부분은 실행된다.
 	//그런데 위에 Class 부분에 @SessionAttributes가 붙으면 한번만 실행된다. 위를 참고하자.

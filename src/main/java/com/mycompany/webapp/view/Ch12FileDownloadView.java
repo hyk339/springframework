@@ -64,9 +64,20 @@ public class Ch12FileDownloadView extends AbstractView{
 		OutputStream os = response.getOutputStream();
 		
 		//입력스트림 -> 출력스트림 //조금조금씩 읽고 출력하기때문에 메모리를 많이 차지하지 않는다.
-		FileCopyUtils.copy(is, os);
+		//FileCopyUtils.copy(is, os);
+		
+		byte[] data = new byte[1024];
+		int readByteNum = -1;
+		
+		while(true) {
+			readByteNum = is.read(data);
+			if(readByteNum == -1) break;
+			os.write(data,0,readByteNum);
+			os.flush();
+		}
+		
 		is.close();
-		os.flush();
+		//os.flush();
 		os.close();
 		
 		//이게 메모리를 적게 차지하기때문에 좋은 방법이다.
