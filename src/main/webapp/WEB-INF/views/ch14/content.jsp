@@ -26,6 +26,17 @@
 				<a href="testDelete" class="btn btn-info btn-sm">testDelete</a>
 			</div>
 		</div>
+		
+		<div class="card">
+			<div class="card-header">
+				MyBatis를 이용하는 Dao
+			</div>
+			<div class="card-body">
+				<a href="join" class="btn btn-info btn-sm">회원 가입</a>
+				<a href="login" class="btn btn-info btn-sm">로그인</a>
+			</div>
+		</div>
+		
 	</div>
 </div>
 
