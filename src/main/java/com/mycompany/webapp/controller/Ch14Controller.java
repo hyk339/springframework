@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -16,7 +17,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.mycompany.webapp.dto.Ch14Board;
 import com.mycompany.webapp.dto.Ch14Member;
+import com.mycompany.webapp.service.Ch14BoardService;
 import com.mycompany.webapp.service.Ch14MemberService;
 import com.mycompany.webapp.service.Ch14MemberService.JoinResult;
 import com.mycompany.webapp.service.Ch14MemberService.LoginResult;
@@ -197,6 +200,17 @@ public class Ch14Controller {
 			model.addAttribute("error","알 수 없는 이유로 로그인이 되지 않았습니다. 다시 시도해 주세요.");
 			return "ch14/loginForm";
 		}
+	}
+	
+	
+	@Resource
+	private Ch14BoardService boardService;
+	
+	@GetMapping("boardList")
+	public String boardList(Model model) {
+		List<Ch14Board> boards = boardService.getBoards();
+		model.addAttribute("boards", boards);
+		return "ch14/boardList";
 	}
 	
 }
