@@ -2,8 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.mycompany.webapp.dao.Ch14BoardDao">
-	<select id="selectByPage" resultType="com.mycompany.webapp.dto.Ch14Board">
-		SELECT bno, btitle, bdate, mid FROM board
+	<select id="selectByPage" parameterType="pager" resultType="com.mycompany.webapp.dto.Ch14Board">
+		
+		SELECT rnum, bno, btitle, bdate, mid
+		FROM (
+		    SELECT ROWNUM as rnum, bno, btitle, bdate, mid
+		    FROM(
+		        SELECT bno, btitle, bdate, mid 
+		        FROM board
+		        order by bno DESC
+		    )
+		    WHERE rownum &lt;= #{endRowNo}
+		)
+		WHERE rnum &gt;= #{startRowNo}
+		
 	</select>
 	
 	<select id="count" resultType="int">

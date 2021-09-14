@@ -16,15 +16,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mycompany.webapp.dto.Ch14Board;
 import com.mycompany.webapp.dto.Ch14Member;
+import com.mycompany.webapp.dto.Pager;
 import com.mycompany.webapp.service.Ch14BoardService;
 import com.mycompany.webapp.service.Ch14MemberService;
 import com.mycompany.webapp.service.Ch14MemberService.JoinResult;
 import com.mycompany.webapp.service.Ch14MemberService.LoginResult;
-
-import oracle.jdbc.proxy.annotation.Post;
 
 @Controller
 @RequestMapping("/ch14")
@@ -210,9 +210,12 @@ public class Ch14Controller {
 	
 	
 	@GetMapping("boardList")
-	public String boardList(Model model) {
+	public String boardList(@RequestParam(defaultValue = "1") int pageNo, Model model) {
+		int totalRows = boardService.getTotalBoardNum();
+		Pager pager = new Pager(10, 5, totalRows, pageNo);
 		
-		List<Ch14Board> boards = boardService.getBoards();
+		
+		List<Ch14Board> boards = boardService.getBoards(pager);
 		model.addAttribute("boards", boards);
 		return "ch14/boardList";
 	}
