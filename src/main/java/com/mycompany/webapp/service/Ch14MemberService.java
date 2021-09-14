@@ -21,6 +21,14 @@ public class Ch14MemberService {
 		DUPLICATED
 	}
 	
+	//fail은 db 연결이 안되거나 기타 이유인경우
+	public enum LoginResult{
+		SUCCESS,
+		FAIL_MID,
+		FAIL_MPASSWORD,
+		FAIL
+	}
+	
 	/*
 	public static final int JOIN_SUCCESS = 0;
 	public static final int JOIN_FAIL = 1;
@@ -46,6 +54,26 @@ public class Ch14MemberService {
 		} catch(Exception e) {
 			e.printStackTrace();
 			return JoinResult.FAIL;
+		}
+	}
+
+	public LoginResult login(Ch14Member member) {
+		try {
+			//이미 가입된 아이디인지 확인
+			Ch14Member dbMember = memberDao.selectByMid(member.getMid()); //SELECT * FROM member WHERE mid = ?
+			
+			//확인 작업
+			if(dbMember == null) {
+				memberDao.insert(member);
+				return LoginResult.FAIL_MID;
+			} else if(!dbMember.getMpassword().equals(member.getMpassword())){
+				return LoginResult.FAIL_MPASSWORD;
+			} else{
+				return LoginResult.SUCCESS;
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+			return LoginResult.FAIL;
 		}
 	}
 }
