@@ -24,6 +24,8 @@ import com.mycompany.webapp.service.Ch14MemberService;
 import com.mycompany.webapp.service.Ch14MemberService.JoinResult;
 import com.mycompany.webapp.service.Ch14MemberService.LoginResult;
 
+import oracle.jdbc.proxy.annotation.Post;
+
 @Controller
 @RequestMapping("/ch14")
 public class Ch14Controller {
@@ -206,11 +208,49 @@ public class Ch14Controller {
 	@Resource
 	private Ch14BoardService boardService;
 	
+	
 	@GetMapping("boardList")
 	public String boardList(Model model) {
+		
 		List<Ch14Board> boards = boardService.getBoards();
 		model.addAttribute("boards", boards);
 		return "ch14/boardList";
 	}
 	
+	@GetMapping("/boardWriteForm")
+	public String boardWriteForm() {
+		return "ch14/boardWriteForm";
+	}
+	
+	@PostMapping("/boardWrite")
+	public String boardWrite(Ch14Board board) {
+		boardService.writeBoard(board);
+		return "redirect:/ch14/boardList";
+	}
+	
+	@GetMapping("/boardDetail")
+	public String boardDetail(int bno, Model model) {
+		Ch14Board board = boardService.getBoard(bno);
+		model.addAttribute("board", board);
+		return "ch14/boardDetail";
+	}
+	
+	@GetMapping("boardUpdateForm")
+	public String boardUpdateForm(int bno, Model model) {
+		Ch14Board board = boardService.getBoard(bno);
+		model.addAttribute("board", board);
+		return "ch14/boardUpdateForm";
+	}
+	
+	@PostMapping("boardUpdate")
+	public String boardUpdate(Ch14Board board) {
+		boardService.updateBoard(board);
+		return "redirect:/ch14/boardDetail?bno="+board.getBno();
+	}
+	
+	@GetMapping("boardDelete")
+	public String boardDelete(int bno) {
+		boardService.removeBoard(bno);
+		return "redirect:/ch14/boardList";
+	}
 }

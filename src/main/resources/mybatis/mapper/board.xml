@@ -27,3 +27,5 @@
 		UPDATE board SET btitle=#{btitle}, bcontent=#{bcontent} WHERE bno=#{bno}
 	</update>
 </mapper>
+
+
