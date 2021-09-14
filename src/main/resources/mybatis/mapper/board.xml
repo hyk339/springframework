@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mycompany.webapp.dao.Ch14BoardDao">
+	<select id="selectByPage" resultType="com.mycompany.webapp.dto.Ch14Board"></select>
+	<select id="count" resultType="int"></select>
+	<select id="selectByBno" parameterType="int" resultType="board"></select>
+	<insert id="insert" parameterType="board"></insert>
+	<delete id="deleteByBno" parameterType="int"></delete>
+	<update id="update" parameterType="board"></update>
+</mapper>

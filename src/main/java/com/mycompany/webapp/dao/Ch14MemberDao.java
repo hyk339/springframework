@@ -17,13 +17,15 @@ public class Ch14MemberDao {
 	@Resource
 	private SqlSessionTemplate sqlSessionTemplate;
 	
-	
-	public void insert(Ch14Member member) {
-		sqlSessionTemplate.insert("member.insert", member);
+	//몇개가 insert 되었는지를 return하게하자.
+	public int insert(Ch14Member member) {
+		int rows = sqlSessionTemplate.insert("mybatis.mapper.member.insert", member); 
+		return rows;
 	}
 	
 	public Ch14Member selectByMid(String mid) {
 		//select를 해올때 member의 객체 하나 즉, 한 행에대한 정보만 가져올 것이다. 
-		return sqlSessionTemplate.selectOne("member.selectByMid", mid);
+		Ch14Member member = sqlSessionTemplate.selectOne("mybatis.mapper.member.selectByMid", mid);
+		 return member;
 	}
 }
