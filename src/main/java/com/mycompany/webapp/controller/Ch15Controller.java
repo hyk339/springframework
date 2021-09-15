@@ -16,10 +16,48 @@ public class Ch15Controller {
 		return "ch15/content";
 	}
 	
-	@RequestMapping("before")
+	@RequestMapping("/before")
 	public String before() {
 		logger.info("실행");
 		return "redirect:/ch15/content";
 	}
 	
+	@RequestMapping("/after")
+	public String afterXXX() {
+		logger.info("실행");
+		return "redirect:/ch15/content";
+	}
+	
+	@RequestMapping("/afterReturning")
+	public String afterReturning() {
+		logger.info("실행");
+		return "redirect:/ch15/content";
+	}
+	
+	@RequestMapping("/afterThrowing")
+	public String afterThrowing() {
+		logger.info("실행");
+		if(true) {
+			throw new RuntimeException("테스트 예외입니다.");
+		}
+		return "redirect:/ch15/content";
+	}
+	
+	@RequestMapping("/around")
+	public String around() {
+		logger.info("실행");
+		return "redirect:/ch15/content";
+	}
+	
+	@RequestMapping("/runtimeCheck")
+	public String runtimeCheck() {
+		logger.info("실행");
+		return "redirect:/ch15/content";
+	}
+
+	@RequestMapping("/authCheck")
+	public String authCheck() {
+		logger.info("실행");
+		return "redirect:/ch15/content";
+	}
 }
