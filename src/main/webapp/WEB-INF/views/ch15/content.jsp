@@ -26,9 +26,44 @@
 			</div>
 			<div class="card-body">
 				<a href="runtimeCheck" class="btn btn-info btn-sm">요청 처리 시간 측정</a>
-				<a href="authCheck" class="btn btn-info btn-sm">인증 여부 확인</a>
+				<a href="javascript:boardList()" class="btn btn-info btn-sm">인증 여부 확인</a>
+				<hr/>
+				<div>${methodName} 실행시간: ${howLong}</div>
+				<hr/>
+				<div id="boardList"></div>
+			</div>
+			<script>
+				function boardList(){
+					$.ajax({
+						url:"boardList"
+					}).done((data)=>{
+						if(data.result === "loginNeed"){
+							//$("#boardList").html("로그인이 필요합니다.");
+							window.location.href="login";
+						} else{
+							$("#boardList").html(data);
+						}
+					});
+				}
+			</script>
+		</div>
+		
+		<div class="card">
+			<div class="card-header">
+				form을 통한 login 처리		
+			</div>
+			<div class="card-body">
+				<c:if test="${sessionMid == null}">
+					<a href="login" class="btn btn-info btn-sm">로그인 폼 요청</a>
+				</c:if>
+				<c:if test="${sessionMid != null}">
+					<a href="logout" class="btn btn-info btn-sm">로그아웃</a>
+				</c:if>
 			</div>
 		</div>
+		
+		
+		
 	</div>
 </div>
 
