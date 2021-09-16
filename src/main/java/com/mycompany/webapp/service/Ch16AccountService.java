@@ -108,7 +108,7 @@ public class Ch16AccountService {
 			Ch16Account toAccount = accountDao.selectByAno(toAno);
 			toAccount.setBalance(toAccount.getBalance()+amount);
 			accountDao.updateBalance(toAccount);
-		} catch(Exception e) {
+		} catch(Exception e) { //선언적 방식에서는 예외가 무조건 발생해야한다.
 			throw new Ch16NotFoundAccountException("계좌가 존재하지 않습니다.");
 		}
 	}
