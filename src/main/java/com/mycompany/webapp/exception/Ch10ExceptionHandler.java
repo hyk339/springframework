@@ -3,6 +3,7 @@ package com.mycompany.webapp.exception;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -50,12 +51,19 @@ public class Ch10ExceptionHandler {
 	}
 	
 	@ExceptionHandler
-	public String handleClassCastException(Ch10SoldOutException e) { 
+	public String handleCh10CastException(Ch10SoldOutException e) { 
 		logger.info("실행");
 		e.printStackTrace();
 		return "error/soldout";
 	}
 	
+	@ExceptionHandler
+	public String Ch16NotFoundAccountException(Ch16NotFoundAccountException e, Model model) { 
+		logger.info("실행");
+		e.printStackTrace();
+		model.addAttribute("error", e.getMessage());
+		return "error/notFoundAccountException";
+	}	
 	
 	//springframework이 알아서 구체적인 예외 먼저 찾고 일반적인 예외를 찾는다.그래서 순서는 상관없다.
 	@ExceptionHandler
@@ -64,7 +72,7 @@ public class Ch10ExceptionHandler {
 	//runtimeException은 try catch를 하지 않아도 된다. compiler가 안붙여도 된다고 한다.
 	//반면 다른 예외는 반드시 try catch하라고 compiler가 예외처리하라고 알려준다.
 	//trycatch를 하는 exception은 이쪽으로 넘어오지 못한다. 왜냐하면 그 class에서 trycatch를 바로 처리해야하기때문
-	public String handleRuntimeException(RuntimeException e) { 
+	public String handleOtherException(RuntimeException e) { 
 		logger.info("실행");
 		e.printStackTrace();
 		return "error/500";
