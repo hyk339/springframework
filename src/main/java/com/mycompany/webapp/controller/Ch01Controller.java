@@ -14,8 +14,10 @@ public class Ch01Controller {
 	private static final Logger logger = LoggerFactory.getLogger(Ch01Controller.class);
 	
 	@RequestMapping("/content") //클라이언트가 이와같이 요청할 경우에 아래를 실행한다. //ch01 앞에는 context root까지 생략되어있다.
-	public String home() {
+	public String content() {
 		//logger.debug("실행1");
+		Thread thread = Thread.currentThread();
+		logger.info(thread.getName());
 		logger.info("실행2");
 		//logger.warn("실행3");
 		//logger.error("실행4");
